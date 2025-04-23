@@ -1,0 +1,15 @@
+{
+  "name": "social-media-automation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required for pure Netlify Functions'"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "netlify-cli": "^15.0.0"
+  }
+}
