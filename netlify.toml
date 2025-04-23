@@ -1,22 +1,27 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-  
-[build.environment]
-  NODE_VERSION = "16.14.0"
-  
+  functions = "functions"
+  publish = "public"
+
 [dev]
   command = "npm run dev"
-  
+
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/nextjs-api/:splat"
+  from = "/api/status"
+  to = "/.netlify/functions/status"
   status = 200
-  
+
+[[redirects]]
+  from = "/api/tiktok/account"
+  to = "/.netlify/functions/tiktok-account"
+  status = 200
+
+[[redirects]]
+  from = "/api/tiktok/post"
+  to = "/.netlify/functions/tiktok-post"
+  status = 200
+
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/nextjs"
+  to = "/index.html"
   status = 200
-  
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
