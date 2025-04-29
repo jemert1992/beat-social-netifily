@@ -82,15 +82,7 @@ function setupEventListeners() {
         scheduleButton.addEventListener('click', handleSchedulePost);
     }
     
-    // Navigation links
-    document.querySelectorAll('.nav-link, .sidebar-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Remove active class from all links
-            document.querySelectorAll('.nav-link, .sidebar-link').forEach(l => {
-                l.classList.remove('active');
-            });
+    // Navigation links handler removed - using standard HTML navigation
             
             // Add active class to clicked link
             this.classList.add('active');
