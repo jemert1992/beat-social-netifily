@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Automation Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">BeatSocial</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link active">Dashboard</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Content</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Schedule</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Analytics</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link active">
+                        <i class="fas fa-home sidebar-icon"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-edit sidebar-icon"></i>
+                        Create Content
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-calendar-alt sidebar-icon"></i>
+                        Schedule Posts
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-chart-line sidebar-icon"></i>
+                        Analytics
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-hashtag sidebar-icon"></i>
+                        Trending Topics
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-cog sidebar-icon"></i>
+                        Settings
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-question-circle sidebar-icon"></i>
+                        Help
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1 class="mb-4">Dashboard</h1>
+
+            <div class="analytics-cards">
+                <div class="analytics-card">
+                    <div class="analytics-label">Total Posts</div>
+                    <div class="analytics-value">24</div>
+                    <div class="text-muted">Last 30 days</div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-label">Engagement Rate</div>
+                    <div class="analytics-value">4.2%</div>
+                    <div class="text-muted">+0.8% from last month</div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-label">Followers</div>
+                    <div class="analytics-value">1,245</div>
+                    <div class="text-muted">+123 new followers</div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-label">Scheduled Posts</div>
+                    <div class="analytics-value">8</div>
+                    <div class="text-muted">Next 7 days</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Create New Content</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="content-creation">
+                                <div class="form-group">
+                                    <label for="content-type" class="form-label">Content Type</label>
+                                    <select id="content-type" class="form-select">
+                                        <option value="video">Video</option>
+                                        <option value="image">Image</option>
+                                        <option value="carousel">Carousel</option>
+                                        <option value="text">Text Only</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content-url" class="form-label">Content URL</label>
+                                    <input type="text" id="content-url" class="form-control" placeholder="https://example.com/video.mp4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="caption" class="form-label">Caption</label>
+                                    <textarea id="caption" class="form-control" placeholder="Write your caption here..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hashtags" class="form-label">Hashtags</label>
+                                    <input type="text" id="hashtags" class="form-control" placeholder="Add hashtags (comma separated)">
+                                    <div class="hashtag-list mt-2">
+                                        <span class="hashtag">#socialmedia <span class="hashtag-remove">×</span></span>
+                                        <span class="hashtag">#marketing <span class="hashtag-remove">×</span></span>
+                                        <span class="hashtag">#content <span class="hashtag-remove">×</span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="platforms" class="form-label">Platforms</label>
+                                    <div class="d-flex mt-2">
+                                        <div class="form-check mr-3">
+                                            <input type="checkbox" id="platform-tiktok" class="form-check-input" checked>
+                                            <label for="platform-tiktok" class="form-check-label">TikTok</label>
+                                        </div>
+                                        <div class="form-check mr-3">
+                                            <input type="checkbox" id="platform-instagram" class="form-check-input">
+                                            <label for="platform-instagram" class="form-check-label">Instagram</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" id="platform-twitter" class="form-check-input">
+                                            <label for="platform-twitter" class="form-check-label">Twitter</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button class="btn btn-secondary">Save Draft</button>
+                                    <div>
+                                        <button class="btn btn-primary mr-2">Schedule</button>
+                                        <button class="btn btn-success">Post Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Upcoming Posts</h2>
+                            <button class="btn btn-primary btn-sm">View All</button>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Content</th>
+                                        <th>Platform</th>
+                                        <th>Scheduled For</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Summer Collection Teaser</td>
+                                        <td>TikTok, Instagram</td>
+                                        <td>Apr 24, 2025 - 10:00 AM</td>
+                                        <td><span class="badge badge-warning">Scheduled</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary mr-1">Edit</button>
+                                            <button class="btn btn-sm btn-danger">Cancel</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product Tutorial Video</td>
+                                        <td>TikTok</td>
+                                        <td>Apr 25, 2025 - 2:30 PM</td>
+                                        <td><span class="badge badge-warning">Scheduled</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary mr-1">Edit</button>
+                                            <button class="btn btn-sm btn-danger">Cancel</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer Testimonial</td>
+                                        <td>Instagram</td>
+                                        <td>Apr 26, 2025 - 9:15 AM</td>
+                                        <td><span class="badge badge-warning">Scheduled</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary mr-1">Edit</button>
+                                            <button class="btn btn-sm btn-danger">Cancel</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Posts</h2>
+                            <button class="btn btn-primary btn-sm">View All</button>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Content</th>
+                                        <th>Platform</th>
+                                        <th>Posted On</th>
+                                        <th>Performance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Behind the Scenes</td>
+                                        <td>TikTok</td>
+                                        <td>Apr 22, 2025</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="mr-2">1.2K likes</span>
+                                                <span class="badge badge-success">High</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">Analytics</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>New Product Announcement</td>
+                                        <td>TikTok, Instagram</td>
+                                        <td>Apr 20, 2025</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="mr-2">856 likes</span>
+                                                <span class="badge badge-primary">Medium</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">Analytics</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weekly Tips & Tricks</td>
+                                        <td>TikTok</td>
+                                        <td>Apr 18, 2025</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="mr-2">2.4K likes</span>
+                                                <span class="badge badge-success">High</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">Analytics</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
