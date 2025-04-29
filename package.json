@@ -1,15 +1,13 @@
 {
-  "name": "social-media-automation",
+  "name": "ai-visual-generator",
   "version": "1.0.0",
-  "private": true,
+  "description": "AI Visual Generator for Netlify",
+  "main": "index.js",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "echo 'No build step required for pure Netlify Functions'"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "axios": "^0.27.2"
-  },
-  "devDependencies": {
-    "netlify-cli": "^15.0.0"
+    "dotenv": "^16.0.3",
+    "node-fetch": "^2.6.9"
   }
 }
