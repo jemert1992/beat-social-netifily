@@ -1,17 +1,17 @@
 // Netlify Function for image generation
-const fetch = require('node-fetch');
-require('dotenv').config();
+const fetch = require("node-fetch");
+require("dotenv").config();
 
-exports.handler = async function(event, context) {
+const mainHandler = async function(event, context) {
   try {
     // Only allow POST requests
     if (event.httpMethod !== "POST") {
       return {
         statusCode: 405,
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Content-Type': 'application/json'
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ error: "Method not allowed" })
       };
@@ -25,9 +25,9 @@ exports.handler = async function(event, context) {
       return {
         statusCode: 400,
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Content-Type': 'application/json'
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ error: "Missing required field: prompt" })
       };
@@ -39,9 +39,9 @@ exports.handler = async function(event, context) {
       return {
         statusCode: 500,
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Content-Type': 'application/json'
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ error: "API key not configured" })
       };
@@ -49,74 +49,74 @@ exports.handler = async function(event, context) {
 
     // Prepare the prompt with style and niche enhancements
     let enhancedPrompt = data.prompt;
-    const style = data.style || 'modern';
-    const niche = data.niche || 'general';
+    const style = data.style || "modern";
+    const niche = data.niche || "general";
     
     // Style presets
     const styles = {
-      'modern': {
-        prefix: 'Modern, clean, professional photo, ',
-        suffix: ', high quality, detailed',
-        negative: 'blurry, low quality, distorted'
+      "modern": {
+        prefix: "Modern, clean, professional photo, ",
+        suffix: ", high quality, detailed",
+        negative: "blurry, low quality, distorted"
       },
-      'minimal': {
-        prefix: 'Minimalist, simple, clean, ',
-        suffix: ', high quality, elegant',
-        negative: 'busy, cluttered, complex, low quality'
+      "minimal": {
+        prefix: "Minimalist, simple, clean, ",
+        suffix: ", high quality, elegant",
+        negative: "busy, cluttered, complex, low quality"
       },
-      'vibrant': {
-        prefix: 'Vibrant, colorful, energetic, ',
-        suffix: ', high saturation, detailed',
-        negative: 'dull, monochrome, low saturation'
+      "vibrant": {
+        prefix: "Vibrant, colorful, energetic, ",
+        suffix: ", high saturation, detailed",
+        negative: "dull, monochrome, low saturation"
       },
-      'vintage': {
-        prefix: 'Vintage, retro, nostalgic, ',
-        suffix: ', film grain, analog',
-        negative: 'modern, digital, clean'
+      "vintage": {
+        prefix: "Vintage, retro, nostalgic, ",
+        suffix: ", film grain, analog",
+        negative: "modern, digital, clean"
       },
-      'editorial': {
-        prefix: 'Editorial, magazine style, professional, ',
-        suffix: ', high fashion, detailed',
-        negative: 'amateur, casual, low quality'
+      "editorial": {
+        prefix: "Editorial, magazine style, professional, ",
+        suffix: ", high fashion, detailed",
+        negative: "amateur, casual, low quality"
       }
     };
 
     // Niche enhancements
     const niches = {
-      'fashion': ' fashion, style, clothing, outfit, model, ',
-      'food': ' food, cuisine, dish, meal, delicious, ',
-      'fitness': ' fitness, workout, exercise, healthy, athletic, ',
-      'travel': ' travel, destination, landscape, adventure, ',
-      'beauty': ' beauty, cosmetics, skincare, glamour, ',
-      'tech': ' technology, gadget, device, modern, ',
-      'general': ' '
+      "fashion": " fashion, style, clothing, outfit, model, ",
+      "food": " food, cuisine, dish, meal, delicious, ",
+      "fitness": " fitness, workout, exercise, healthy, athletic, ",
+      "travel": " travel, destination, landscape, adventure, ",
+      "beauty": " beauty, cosmetics, skincare, glamour, ",
+      "tech": " technology, gadget, device, modern, ",
+      "general": " "
     };
 
     // Apply style and niche to prompt
-    const selectedStyle = styles[style] || styles['modern'];
-    const nicheKeywords = niches[niche] || niches['general'];
+    const selectedStyle = styles[style] || styles["modern"];
+    const nicheKeywords = niches[niche] || niches["general"];
     
     enhancedPrompt = selectedStyle.prefix + nicheKeywords + enhancedPrompt + selectedStyle.suffix;
     const negativePrompt = data.negative_prompt || selectedStyle.negative;
 
     // Prepare aspect ratio
-    const aspectRatio = data.aspect_ratio || '9:16';
+    const aspectRatio = data.aspect_ratio || "9:16";
     let width, height;
     
     switch (aspectRatio) {
-      case '1:1':
+      case "1:1":
         width = 1024;
         height = 1024;
         break;
-      case '4:5':
+      case "4:5":
         width = 864;
         height = 1080;
         break;
-      case '16:9':
+      case "16:9":
         width = 1280;
         height = 720;
         break;
-      case '9:16':
+      case "9:16":
       default:
         width = 576;
         height = 1024;
@@ -124,12 +124,12 @@ exports.handler = async function(event, context) {
     }
 
     // Call Stability AI API
-    const response = await fetch('https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image', {
-      method: 'POST',
+    const response = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${apiKey}`
       },
       body: JSON.stringify({
         text_prompts: [
@@ -152,15 +152,15 @@ exports.handler = async function(event, context) {
 
     if (!response.ok) {
       const error = await response.json();
-      console.error('Stability API error:', error);
+      console.error("Stability API error:", error);
       return {
         statusCode: response.status,
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Content-Type': 'application/json'
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ error: error.message || 'Error calling Stability API' })
+        body: JSON.stringify({ error: error.message || "Error calling Stability API" })
       };
     }
 
@@ -171,7 +171,7 @@ exports.handler = async function(event, context) {
     // In a production environment, you would use Netlify Large Media or another storage solution
     
     // Generate a unique ID for the image
-    const imageId = 'img_' + Math.random().toString(36).substring(2, 10);
+    const imageId = "img_" + Math.random().toString(36).substring(2, 10);
     
     // Get the base64 image data from the response
     const imageData = responseData.artifacts[0].base64;
@@ -180,15 +180,15 @@ exports.handler = async function(event, context) {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json'
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         success: true,
         image: {
           id: imageId,
-          url: `/images/${imageId}.png`,
+          url: `/images/${imageId}.png`, // Mock URL, actual storage needed
           base64: imageData,
           metadata: {
             prompt: data.prompt,
@@ -200,13 +200,13 @@ exports.handler = async function(event, context) {
       })
     };
   } catch (error) {
-    console.error('Function error:', error);
+    console.error("Function error:", error);
     return {
       statusCode: 500,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json'
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({ error: "Internal server error: " + error.message })
     };
@@ -215,18 +215,19 @@ exports.handler = async function(event, context) {
 
 // Handle OPTIONS requests for CORS
 exports.handler = async function(event, context) {
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
       },
-      body: ''
+      body: ""
     };
   }
   
   // For non-OPTIONS requests, call the main handler
   return mainHandler(event, context);
 };
+
